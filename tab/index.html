@@ -1,0 +1,92 @@
+﻿<!DOCTYPE html>
+<html lang="en" ng-app="demo" ng-controller="myController">
+<head>
+    <meta charset="UTF-8">
+    <title ng-bind="title">title</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            border: 0;
+            list-style: none;
+        }
+        a{
+            text-decoration: none;
+            color: #000;
+        }
+        .box {
+            width: 1000px;
+            margin: 50px auto;
+        }
+
+        .box .title {
+            width: 336px;
+            height: 44px;
+            border: 3px solid #ccc;
+            position: relative;
+            top: 3px;
+            background: #fff;
+            border-bottom: none;
+        }
+
+        .box .content {
+            width: 342px;
+            height: 222px;
+        }
+
+        .box .content img {
+            width: 342px;
+            height: 222px;
+        }
+
+        .box ul {
+            overflow: hidden;
+        }
+
+        .box ul li {
+            width: 64px;
+            float: left;
+            text-align: center;
+            padding: 10px;
+        }
+        .box ul .cur{
+            background-color: #C81623;
+            border-bottom: 3px solid #C81623;
+        }
+        .box ul .cur a{
+            color:white;
+        }
+    </style>
+</head>
+<body>
+<div class="box">
+    <div class="title">
+        <ul>
+            <li ng-class="{cur:course == '水门'}" ng-mouseover="move('水门')"><a href="#">水门</a></li>
+            <li ng-class="{cur:course == '自来也'}" ng-mouseover="move('自来也')"><a href="">自来也</a></li>
+            <li ng-class="{cur:course == '卡卡西'}" ng-mouseover="move('卡卡西')"><a href="">卡卡西</a></li>
+            <li ng-class="{cur:course == '鸣人'}" ng-mouseover="move('鸣人')"><a href="">鸣人</a></li>
+        </ul>
+    </div>
+
+    <div class="content" ng-switch="course">
+        <div ng-switch-default><img src="image/01.jpg" alt=""></div>
+        <div ng-switch-when="自来也"><img src="image/02.jpg" alt=""></div>
+        <div ng-switch-when="卡卡西"><img src="image/03.jpg" alt=""></div>
+        <div ng-switch-when="鸣人"><img src="image/04.jpg" alt=""></div>
+    </div>
+
+</div>
+<script src="../js/angular.js"></script>
+<script>
+    var app = angular.module("demo", []);
+    app.controller("myController", ["$scope", function ($scope) {
+        $scope.title = "easy to tab";
+        $scope.course = "水门";
+        $scope.move = function (reg) {
+           $scope.course = reg;
+        }
+    }])
+</script>
+</body>
+</html>
